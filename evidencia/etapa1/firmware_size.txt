@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  24057	     96	  10632	  34785	   87e1	bin/main.elf

@@ -1,0 +1,79 @@
+=== Bridge ROS 2 emulado en /dev/ttyUSB0 (115200 8N1). Ctrl-C para salir. ===
+RX [OK ] EVT:deadman_ok   -> bridge/event
+           >> ROBOT: operador presente -> habilitado a operar
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] STS:ALIVE        -> bridge/status
+           >> ROBOT: heartbeat de operador presente
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] STS:ALIVE        -> bridge/status
+           >> ROBOT: heartbeat de operador presente
+RX [OK ] EVT:deadman      -> bridge/event
+           >> ROBOT: !PARADA INMEDIATA!
+TX        ACK:ok          (@06:ACK:ok:4B)
+RX [OK ] STS:EMERGENCY    -> bridge/status
+           >> ROBOT: emergencia disparada por un sensor
+RX [OK ] EVT:deadman_ok   -> bridge/event
+           >> ROBOT: operador presente -> habilitado a operar
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] STS:ALIVE        -> bridge/status
+           >> ROBOT: heartbeat de operador presente
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] DAT:spd=99       -> bridge/data
+           >> ROBOT: avanza a 99 % de velocidad
+RX [OK ] STS:ALIVE        -> bridge/status
+           >> ROBOT: heartbeat de operador presente
+RX [OK ] EVT:deadman      -> bridge/event
+           >> ROBOT: !PARADA INMEDIATA!
+TX        ACK:ok          (@06:ACK:ok:4B)
+RX [OK ] STS:EMERGENCY    -> bridge/status
+           >> ROBOT: emergencia disparada por un sensor
+RX [OK ] EVT:deadman_ok   -> bridge/event
+           >> ROBOT: operador presente -> habilitado a operar
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] STS:ALIVE        -> bridge/status
+           >> ROBOT: heartbeat de operador presente
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] DAT:spd=41       -> bridge/data
+           >> ROBOT: avanza a 41 % de velocidad
+RX [OK ] EVT:deadman      -> bridge/event
+           >> ROBOT: !PARADA INMEDIATA!
+TX        ACK:ok          (@06:ACK:ok:4B)
+RX [OK ] EVT:deadman_ok   -> bridge/event
+           >> ROBOT: operador presente -> habilitado a operar
+RX [OK ] EVT:deadman      -> bridge/event
+           >> ROBOT: !PARADA INMEDIATA!
+TX        ACK:ok          (@06:ACK:ok:4B)
+RX [OK ] STS:EMERGENCY    -> bridge/status
+           >> ROBOT: emergencia disparada por un sensor

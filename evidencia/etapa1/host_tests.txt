@@ -1,0 +1,80 @@
+===== Etapa 1: protocol (encode / checksum / decode) =====
+./test_protocol
+=== Checksum XOR ===
+  checksum("08:CMD:ping") = 0x52 (esperaba 0x52)   [OK]
+  checksum("0E:CMD:led=toggle") = 0x7D (esperaba 0x7D)   [OK]
+  checksum("0A:ACK:cmd=ok") = 0x6B (esperaba 0x6B)   [OK]
+  checksum("14:ERR:code=unknown_cmd") = 0x2D (esperaba 0x2D)   [OK]
+
+=== Encode (tabla de la consigna) ===
+  encode(CMD, ping            ) -> @08:CMD:ping:52\n   [OK]
+  encode(CMD, led=on          ) -> @0A:CMD:led=on:6A\n   [OK]
+  encode(CMD, led=off         ) -> @0B:CMD:led=off:07\n   [OK]
+  encode(CMD, led=toggle      ) -> @0E:CMD:led=toggle:7D\n   [OK]
+  encode(CMD, status?         ) -> @0B:CMD:status?:13\n   [OK]
+  encode(ACK, pong=1          ) -> @0A:ACK:pong=1:22\n   [OK]
+  encode(ACK, cmd=ok          ) -> @0A:ACK:cmd=ok:6B\n   [OK]
+  encode(ERR, code=unknown_cmd) -> @14:ERR:code=unknown_cmd:2D\n   [OK]
+
+=== Decode (abrir el sobre) ===
+  decode("CMD:ping") -> type=CMD payload="ping"   [OK]
+  decode("ACK:pong=1") -> type=ACK payload="pong=1"   [OK]
+  decode("CMD:led=toggle") -> type=CMD payload="led=toggle"   [OK]
+
+=== Decode: casos que deben rechazarse ===
+  decode("XYZ:ping") -> RECHAZA   [OK]
+  decode("CMDxping") -> RECHAZA   [OK]
+  decode("CM") -> RECHAZA   [OK]
+
+=== Resultado: 18 OK, 0 FALLA ===
+
+===== Etapa 2: parser (FSM byte a byte) =====
+./test_parser
+=== Trama valida simple ===
+  entrada: @08:CMD:ping:52\n
+  [OK] entrega exactamente 1 mensaje
+  [OK] tipo CMD
+  [OK] payload ping
+  [OK] sin errores
+
+=== Basura antes de la trama (xyz@...) ===
+  entrada: xyz@08:CMD:ping:52\n
+  [OK] entrega 1 mensaje pese a la basura
+  [OK] payload ping
+
+=== Caso B del TP: ruido con @ en el medio (@0@...) ===
+  entrada: @0@08:CMD:ping:52\n
+  [OK] reutiliza el @ y entrega 1 mensaje
+  [OK] payload ping
+  [OK] registra 1 error (el @ del medio)
+
+=== Caso C del TP: checksum corrupto (:53) ===
+  entrada: @08:CMD:ping:53\n
+  [OK] NO entrega mensaje
+  [OK] registra 1 error
+
+=== Terminador \r\n (monitor serie) ===
+  entrada: @08:CMD:ping:52\r\n
+  [OK] ignora \r y entrega 1 mensaje
+  [OK] sin errores
+
+=== Caso D del TP: dos tramas pegadas ===
+  entrada: @08:CMD:ping:52\n@0A:CMD:led=on:6A\n
+  [OK] entrega 2 mensajes
+  [OK] primero = ping
+  [OK] segundo = led=on
+
+=== Pregunta de cierre: ###@... ===
+  entrada: ###@08:CMD:ping:52\n
+  [OK] entrega 1 mensaje, sin errores
+
+=== Longitud invalida menor que el cuerpo (@07:CMD:ping) ===
+  entrada: @07:CMD:ping:52\n
+  [OK] NO entrega mensaje
+  [OK] registra al menos 1 error
+
+=== Tipo distinto de los conocidos (@08:XYZ:ping) ===
+  entrada: @08:XYZ:ping:43\n
+  [OK] NO entrega mensaje (tipo invalido)
+
+=== Resultado: 20 OK, 0 FALLA ===

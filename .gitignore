@@ -1,0 +1,23 @@
+# Build del firmware
+bin/
+*.o
+*.elf
+*.hex
+*.bin
+*.map
+err.log
+build_err.log
+
+# third_party se referencia del repo base (symlink); no versionar aca
+codigo/firmware/third_party
+
+# Tests de host compilados
+codigo/host_tests/test_parser
+codigo/host_tests/test_protocol
+
+# Python
+__pycache__/
+*.pyc
+
+# Archivos temporales de Microsoft Office
+~$*
